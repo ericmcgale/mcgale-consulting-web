@@ -57,20 +57,20 @@
       display: flex;
       align-items: center;
     }
-    nav a {
+    .nav-links a {
       color: var(--light-color);
       text-decoration: none;
       margin: 0 1rem;
       transition: color 0.3s;
       font-weight: 400;
     }
-    nav a:hover {
+    .nav-links a:hover {
       color: var(--primary-color);
     }
-    /* Contenedor para los botones de idioma */
     .language-buttons {
       display: flex;
       align-items: center;
+      margin-left: 1rem; /* Espacio entre los enlaces y los botones */
     }
     .language-buttons button {
       background: var(--primary-color);
@@ -79,7 +79,7 @@
       padding: 0.5rem 1rem; 
       border-radius: 5px;
       cursor: pointer; 
-      margin-left: 0.5rem; /* Espacio entre botones de idioma */
+      margin-left: 0.5rem;
       transition: background 0.3s;
       font-weight: 600;
     }
@@ -246,9 +246,25 @@
       header h1 {
         font-size: 1.2rem;
       }
-      nav a {
+      /* APLICAMOS FLEX-WRAP PARA QUE LOS ELEMENTOS SALTEN A LA SIGUIENTE LÍNEA */
+      nav {
+        flex-wrap: wrap;
+        justify-content: center; /* Centra los elementos cuando hay espacio */
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .nav-links a {
         margin: 0 0.5rem;
         font-size: 0.9rem;
+      }
+      .language-buttons {
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
       }
       .language-buttons button {
         padding: 0.3rem 0.6rem;
@@ -295,18 +311,6 @@
       }
       nav {
         margin-top: 0.75rem;
-        display: flex;
-        flex-direction: column; /* Apila los enlaces y el grupo de botones */
-        align-items: center;
-        width: 100%;
-      }
-      nav a {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0.5rem; /* Espacio entre enlaces */
-      }
-      .language-buttons {
-        margin-top: 0.5rem; /* Espacio entre los enlaces y los botones */
       }
       .hero h2 {
         font-size: 1.7rem;
@@ -339,10 +343,12 @@
     <h1>Mc Gale Consulting</h1>
     
     <nav>
-      <a href="#" id="nav-home">Inicio</a>
-      <a href="#services" id="nav-services">Servicios</a>
-      <a href="#why-us" id="nav-why-us">Nosotros</a>
-      <a href="#cita" id="nav-contact">Contacto</a>
+      <div class="nav-links">
+        <a href="#" id="nav-home">Inicio</a>
+        <a href="#services" id="nav-services">Servicios</a>
+        <a href="#why-us" id="nav-why-us">Nosotros</a>
+        <a href="#cita" id="nav-contact">Contacto</a>
+      </div>
       <div class="language-buttons">
         <button onclick="setLanguage('es')">ES</button>
         <button onclick="setLanguage('en')">EN</button>
@@ -499,10 +505,10 @@
       const listBuilder = (items) => items.map(item => `<li><i class="fas fa-check-circle"></i>${item}</li>`).join("");
 
       // Navigation & Hero
-      document.getElementById('nav-home').innerText = t.navHome;
-      document.getElementById('nav-services').innerText = t.navServices;
-      document.getElementById('nav-why-us').innerText = t.navWhyUs;
-      document.getElementById('nav-contact').innerText = t.navContact;
+      document.querySelector('.nav-links a[href="#"]').innerText = t.navHome;
+      document.querySelector('.nav-links a[href="#services"]').innerText = t.navServices;
+      document.querySelector('.nav-links a[href="#why-us"]').innerText = t.navWhyUs;
+      document.querySelector('.nav-links a[href="#cita"]').innerText = t.navContact;
       document.getElementById("hero-title").innerText = t.heroTitle;
       document.getElementById("hero-desc").innerText = t.heroDesc;
       document.getElementById("hero-btn").innerText = t.heroBtn;
